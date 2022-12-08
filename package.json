@@ -9,14 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "@types/js-cookie": "^3.0.2",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "eslint": "8.28.0",
     "eslint-config-next": "13.0.5",
+    "js-cookie": "^3.0.1",
+    "keen-slider": "^6.8.5",
     "next": "13.0.5",
+    "nookies": "^2.5.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
     "typescript": "4.9.3"
   }
 }
