@@ -44,8 +44,13 @@ export const Text = styled("div", {
     color: "$white",
     backgroundColor: "$red-100",
 
-    "&:hover": {
+    "&:not(:disabled):hover": {
       backgroundColor: "$red-200",
+    },
+
+    "&:disabled": {
+      cursor: "not-allowed",
+      opacity: 0.8,
     },
   },
 });

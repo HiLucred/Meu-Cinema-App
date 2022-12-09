@@ -4,13 +4,17 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { BaseTitle } from "../../../components/Typography";
 import { imageUrl } from "../../../lib/tmdb";
 import { DetailsContainer, Text } from "../../../styles/pages/details";
-import { FaPlusCircle } from "react-icons/fa";
+import { FaCheckCircle, FaPlusCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { ListContext } from "../../../context/ListContext";
 
 interface DetailsProps {
   titleDetails: {
+    id: number;
     name: string;
     tagline: string;
     overview: string;
+    poster_path: string;
     backdrop_path: string;
     vote_average: number;
     original_name: string;
@@ -24,6 +28,25 @@ interface DetailsProps {
 export default function Details({ titleDetails }: DetailsProps) {
   const voteAverage = titleDetails.vote_average.toFixed(1);
 
+  const { addTitleToList, titlesList } = useContext(ListContext);
+
+  const titleAlreadyExistInList = titlesList.findIndex(
+    (item) => item.id === titleDetails.id
+  );
+
+  function handleAddTitleInList() {
+    console.log("deu?");
+
+    const newTitle = {
+      id: titleDetails.id,
+      title: titleDetails.name,
+      poster_path: titleDetails.poster_path,
+      media_type: "tv",
+    };
+
+    addTitleToList(newTitle);
+  }
+
   return (
     <>
       <Head>
@@ -31,6 +54,7 @@ export default function Details({ titleDetails }: DetailsProps) {
       </Head>
 
       <BaseTitle>{titleDetails.name}</BaseTitle>
+
       <DetailsContainer>
         <Image
           alt=""
@@ -55,6 +79,18 @@ export default function Details({ titleDetails }: DetailsProps) {
               })}
             </li>
           </ul>
+
+          {titleAlreadyExistInList >= 0 ? (
+            <button disabled={true}>
+              <FaCheckCircle size={22} />
+              Na sua lista
+            </button>
+          ) : (
+            <button onClick={handleAddTitleInList}>
+              <FaPlusCircle size={22} />
+              Adicionar na sua lista
+            </button>
+          )}
         </Text>
       </DetailsContainer>
     </>

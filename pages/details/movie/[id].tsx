@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { BaseTitle } from "../../../components/Typography";
 import { imageUrl } from "../../../lib/tmdb";
 import { DetailsContainer, Text } from "../../../styles/pages/details";
-import { FaPlusCircle, FaTrashAlt } from "react-icons/fa";
+import { FaPlusCircle, FaCheckCircle } from "react-icons/fa";
 import { useContext } from "react";
 import { ListContext } from "../../../context/ListContext";
 
@@ -15,9 +15,11 @@ interface DetailsProps {
     tagline: string;
     overview: string;
     backdrop_path: string;
+    poster_path: string;
     release_date: string;
     vote_average: number;
     original_title: string;
+    media_type: string;
 
     genres: {
       name: string;
@@ -26,8 +28,7 @@ interface DetailsProps {
 }
 
 export default function Details({ titleDetails }: DetailsProps) {
-  const { addTitleToList, removeTitleToList, titlesList } =
-    useContext(ListContext);
+  const { addTitleToList, titlesList } = useContext(ListContext);
 
   const releaseDate = titleDetails.release_date.split("-").reverse().join("/");
   const voteAverage = titleDetails.vote_average.toFixed(1);
@@ -36,6 +37,19 @@ export default function Details({ titleDetails }: DetailsProps) {
     (item) => item.id === titleDetails.id
   );
 
+  function handleAddTitleInList() {
+    console.log("deu?");
+
+    const newTitle = {
+      id: titleDetails.id,
+      title: titleDetails.title,
+      poster_path: titleDetails.poster_path,
+      media_type: "movie",
+    };
+
+    addTitleToList(newTitle);
+  }
+
   return (
     <>
       <Head>
@@ -43,6 +57,7 @@ export default function Details({ titleDetails }: DetailsProps) {
       </Head>
 
       <BaseTitle>{titleDetails.title}</BaseTitle>
+
       <DetailsContainer>
         <Image
           alt=""
@@ -55,8 +70,8 @@ export default function Details({ titleDetails }: DetailsProps) {
           <span>{titleDetails.tagline}</span>
           <p>{titleDetails.overview}</p>
           <ul>
-            <li>Nota: {voteAverage}</li>
-            <li>Lançado em: {releaseDate}</li>
+            <li>Nota: {titleDetails.vote_average}</li>
+            <li>Lançado em: {titleDetails.release_date}</li>
             <li>Título original: {titleDetails.original_title}</li>
             <li>
               {titleDetails.genres.map((item) => {
@@ -69,20 +84,17 @@ export default function Details({ titleDetails }: DetailsProps) {
             </li>
           </ul>
 
-          <button>
-            {titleAlreadyExistInList >= 0 ? (
-              <div>
-                <FaTrashAlt
-                  onClick={() => removeTitleToList(titleDetails.id)}
-                />
-                Remover de sua lista
-              </div>
-            ) : (
-              <div>
-                <FaPlusCircle /> Adicionar na sua lista
-              </div>
-            )}
-          </button>
+          {titleAlreadyExistInList >= 0 ? (
+            <button disabled={true}>
+              <FaCheckCircle size={22} />
+              Na sua lista
+            </button>
+          ) : (
+            <button onClick={handleAddTitleInList}>
+              <FaPlusCircle size={22} />
+              Adicionar na sua lista
+            </button>
+          )}
         </Text>
       </DetailsContainer>
     </>

@@ -15,7 +15,7 @@ export default function Search() {
   const [searchResult, setSearchResult] = useState("");
   const [titles, setTitles] = useState<DataTitles[]>([]);
 
-  const isDisabled = searchResult === "" ? true : false;
+  const isDisabled = !!!searchResult;
 
   async function handleSearchTitles() {
     const response = await fetch(

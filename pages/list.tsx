@@ -15,8 +15,13 @@ export default function List() {
       </Head>
 
       <BaseTitle>Sua lista</BaseTitle>
+
       <ListContainer>
-        <TitlesFound titlesFound={titlesList} type={"large"} />
+        {titlesList.length !== 0 ? (
+          <TitlesFound titlesFound={titlesList} type={"large"} />
+        ) : (
+          <span>Sua lista está vazia.</span>
+        )}
       </ListContainer>
     </>
   );

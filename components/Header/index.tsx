@@ -12,12 +12,12 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link href={"/"} prefetch={false}>
+          <Link href={"/category/movie"} prefetch={false}>
             FILMES
           </Link>
         </li>
         <li>
-          <Link href={"/"} prefetch={false}>
+          <Link href={"/category/tv"} prefetch={false}>
             SÉRIES
           </Link>
         </li>

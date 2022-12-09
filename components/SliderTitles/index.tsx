@@ -5,7 +5,7 @@ import { Title, TitlesContainer } from "./styles";
 import { imageUrl } from "../../lib/tmdb";
 import ActionBox from "../ActionBox";
 
-interface TitlesProps {
+export interface TitlesProps {
   data: {
     id: number;
     title: string;
@@ -35,7 +35,7 @@ export default function Titles({ data }: TitlesProps) {
               height={420}
             />
 
-            <ActionBox data={item} />
+            <ActionBox data={item} size={"large"} />
           </Title>
         );
       })}
