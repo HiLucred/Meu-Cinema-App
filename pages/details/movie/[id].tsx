@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { BaseTitle } from "../../../components/Typography";
 import { imageUrl } from "../../../lib/tmdb";
 import { DetailsContainer, Text } from "../../../styles/pages/details";
@@ -30,8 +30,8 @@ interface DetailsProps {
 export default function Details({ titleDetails }: DetailsProps) {
   const { addTitleToList, titlesList } = useContext(ListContext);
 
-  const releaseDate = titleDetails.release_date.split("-").reverse().join("/");
-  const voteAverage = titleDetails.vote_average.toFixed(1);
+  // const releaseDate = titleDetails.release_date.split("-").reverse().join("/");
+  // const voteAverage = titleDetails.vote_average.toFixed(1);
 
   const titleAlreadyExistInList = titlesList.findIndex(
     (item) => item.id === titleDetails.id
@@ -101,14 +101,30 @@ export default function Details({ titleDetails }: DetailsProps) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+// export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+//   params,
+// }) => {
+//   const response = await fetch(
+//     `http://localhost:3000/api/details/movie/${params?.id}`
+//   );
+
+//   const data = await response.json();
+
+//   return {
+//     props: {
+//       titleDetails: data.list,
+//     },
+//   };
+// };
+
+export const getServerSideProps: GetServerSideProps<any, { id: string }> = async ({
   params,
 }) => {
   const response = await fetch(

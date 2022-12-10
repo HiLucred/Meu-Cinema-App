@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { BaseTitle } from "../../../components/Typography";
 import { imageUrl } from "../../../lib/tmdb";
 import { DetailsContainer, Text } from "../../../styles/pages/details";
@@ -26,7 +26,7 @@ interface DetailsProps {
 }
 
 export default function Details({ titleDetails }: DetailsProps) {
-  const voteAverage = titleDetails.vote_average.toFixed(1);
+  // const voteAverage = titleDetails.vote_average.toFixed(1);
 
   const { addTitleToList, titlesList } = useContext(ListContext);
 
@@ -67,7 +67,7 @@ export default function Details({ titleDetails }: DetailsProps) {
           <span>{titleDetails.tagline}</span>
           <p>{titleDetails.overview}</p>
           <ul>
-            <li>Nota: {voteAverage}</li>
+            {/* <li>Nota: {voteAverage}</li> */}
             <li>Título original: {titleDetails.original_name}</li>
             <li>
               {titleDetails.genres.map((item) => {
@@ -97,16 +97,33 @@ export default function Details({ titleDetails }: DetailsProps) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
-  params,
-}) => {
+// export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
+//   params,
+// }) => {
+//   const response = await fetch(
+//     `http://localhost:3000/api/details/tv/${params?.id}`
+//   );
+
+//   const data = await response.json();
+
+//   return {
+//     props: {
+//       titleDetails: data.list,
+//     },
+//   };
+// };
+
+export const getServerSideProps: GetServerSideProps<
+  any,
+  { id: string }
+> = async ({ params }) => {
   const response = await fetch(
     `http://localhost:3000/api/details/tv/${params?.id}`
   );

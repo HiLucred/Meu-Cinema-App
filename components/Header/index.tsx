@@ -12,7 +12,7 @@ export default function Header() {
           </Link>
         </li>
         <li>
-          <Link href={"/category/movie"} prefetch={false}>
+          <Link href={"/category/movies"} prefetch={false}>
             FILMES
           </Link>
         </li>

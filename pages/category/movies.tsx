@@ -1,7 +1,9 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Titles from "../../components/SliderTitles";
 import { BaseTitle } from "../../components/Typography";
+import { loadNowPlaying } from "../../lib/loadNowPlaying";
+import { loadTopRated } from "../../lib/loadTopRated";
 
 interface Trending {
   id: number;
@@ -31,32 +33,25 @@ export default function BrowseContent({ topRated, nowPlaying }: MoviesProps) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { mediaType: "movie" } },
-      { params: { mediaType: "tv" } },
-    ],
-    fallback: true,
-  };
-};
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [
+//       { params: { mediaType: "movie" } },
+//       { params: { mediaType: "tv" } },
+//     ],
+//     fallback: "blocking",
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<
-  any,
-  { mediaType: string }
-> = async ({ params }) => {
-  const topRatedMovies = await fetch(
-    `http://localhost:3000/api/topRated/${params?.mediaType}`
-  ).then((res) => res.json());
+export const getStaticProps: GetStaticProps = async () => {
+  const topRated = await loadTopRated("movie");
 
-  const nowPlayingMovies = await fetch(
-    `http://localhost:3000/api/nowPlaying/${params?.mediaType}`
-  ).then((res) => res.json());
+  const nowPlaying = await loadNowPlaying("movie");
 
   return {
     props: {
-      topRated: topRatedMovies.list,
-      nowPlaying: nowPlayingMovies.list,
+      topRated: topRated.list,
+      nowPlaying: nowPlaying.list,
     },
 
     revalidate: 60 * 60 * 1, // 1 hour
