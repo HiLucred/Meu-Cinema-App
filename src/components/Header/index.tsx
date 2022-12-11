@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { HeaderContainer } from "./styles";
-import { FaBars } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -32,8 +31,6 @@ export default function Header() {
           </Link>
         </li>
       </ul>
-
-      <FaBars size={26} />
     </HeaderContainer>
   );
 }
