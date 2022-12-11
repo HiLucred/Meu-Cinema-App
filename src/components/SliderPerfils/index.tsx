@@ -3,6 +3,7 @@ import Image from "next/image";
 import "keen-slider/keen-slider.min.css";
 import { Perfil, PerfilsContainer } from "./styles";
 import { imageUrl } from "../../lib/tmdb";
+import { breakPointsValues } from "../breakPointsSliderValues";
 
 interface PerfilsProps {
   data: {
@@ -18,6 +19,7 @@ export default function Perfils({ data }: PerfilsProps) {
       perView: 6,
       spacing: 1,
     },
+    breakpoints: breakPointsValues,
   });
 
   return (

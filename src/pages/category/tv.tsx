@@ -16,7 +16,7 @@ interface MoviesProps {
   nowPlaying: Trending[];
 }
 
-export default function Tv({ topRated, nowPlaying }: MoviesProps) {
+export default function TvPage({ topRated, nowPlaying }: MoviesProps) {
   const topRatedFormatted = topRated.map((item) => {
     return {
       ...item,
@@ -30,6 +30,7 @@ export default function Tv({ topRated, nowPlaying }: MoviesProps) {
       media_type: "tv",
     };
   });
+
   return (
     <>
       <Head>
@@ -39,7 +40,7 @@ export default function Tv({ topRated, nowPlaying }: MoviesProps) {
       <BaseTitle>Séries mais bem avaliados</BaseTitle>
       <Titles data={topRatedFormatted} />
 
-      <BaseTitle>Em cartaz</BaseTitle>
+      <BaseTitle>Séries novas</BaseTitle>
       <Titles data={nowPlayingFormatted} />
     </>
   );

@@ -4,6 +4,7 @@ import { useKeenSlider } from "keen-slider/react";
 import { Title, TitlesContainer } from "./styles";
 import { imageUrl } from "../../lib/tmdb";
 import ActionBox from "../ActionBox";
+import { breakPointsValues } from "../breakPointsSliderValues";
 
 export interface TitlesProps {
   data: {
@@ -20,6 +21,8 @@ export default function Titles({ data }: TitlesProps) {
       perView: 4.6,
       spacing: 1,
     },
+
+    breakpoints: breakPointsValues,
   });
 
   return (

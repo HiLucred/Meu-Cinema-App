@@ -16,7 +16,7 @@ interface MoviesProps {
   nowPlaying: Trending[];
 }
 
-export default function BrowseContent({ topRated, nowPlaying }: MoviesProps) {
+export default function MoviesPage({ topRated, nowPlaying }: MoviesProps) {
   const topRatedFormatted = topRated.map((item) => {
     return {
       ...item,

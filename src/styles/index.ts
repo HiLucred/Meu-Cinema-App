@@ -22,7 +22,7 @@ export const {
     },
 
     fontSizes: {
-      sm: '1rem',
+      sm: "1rem",
       md: "1.125rem",
       lg: "1.25rem",
       xl: "1.5rem",
