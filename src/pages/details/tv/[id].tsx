@@ -35,8 +35,6 @@ export default function Details({ titleDetails }: DetailsProps) {
   );
 
   function handleAddTitleInList() {
-    console.log("deu?");
-
     const newTitle = {
       id: titleDetails.id,
       title: titleDetails.name,

@@ -7,7 +7,6 @@ import { loadTopRated } from "../../lib/loadTopRated";
 
 interface Trending {
   id: number;
-  title: string;
   poster_path: string;
   media_type: string;
 }
@@ -18,6 +17,19 @@ interface MoviesProps {
 }
 
 export default function Tv({ topRated, nowPlaying }: MoviesProps) {
+  const topRatedFormatted = topRated.map((item) => {
+    return {
+      ...item,
+      media_type: "tv",
+    };
+  });
+
+  const nowPlayingFormatted = nowPlaying.map((item) => {
+    return {
+      ...item,
+      media_type: "tv",
+    };
+  });
   return (
     <>
       <Head>
@@ -25,27 +37,16 @@ export default function Tv({ topRated, nowPlaying }: MoviesProps) {
       </Head>
 
       <BaseTitle>Séries mais bem avaliados</BaseTitle>
-      <Titles data={topRated} />
+      <Titles data={topRatedFormatted} />
 
       <BaseTitle>Em cartaz</BaseTitle>
-      <Titles data={nowPlaying} />
+      <Titles data={nowPlayingFormatted} />
     </>
   );
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [
-//       { params: { mediaType: "movie" } },
-//       { params: { mediaType: "tv" } },
-//     ],
-//     fallback: "blocking",
-//   };
-// };
-
 export const getStaticProps: GetStaticProps = async () => {
   const topRated = await loadTopRated("tv");
-
   const nowPlaying = await loadNowPlaying("tv");
 
   return {

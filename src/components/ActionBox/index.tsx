@@ -8,9 +8,9 @@ interface ActionBoxProps {
   size: "medium" | "large";
   data: {
     id: number;
-    title: string;
+    title?: string;
     poster_path: string;
-    media_type: string;
+    media_type?: string;
   };
 }
 

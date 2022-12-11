@@ -3,9 +3,9 @@ import { parseCookies, setCookie } from "nookies";
 
 interface Title {
   id: number;
-  title: string;
+  title?: string;
   poster_path: string;
-  media_type: string;
+  media_type?: string;
 }
 
 interface ListContextType {

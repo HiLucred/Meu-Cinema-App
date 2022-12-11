@@ -7,9 +7,9 @@ interface TitlesFoundProps {
   type: "medium" | "large";
   titlesFound: {
     id: number;
-    title: string;
+    title?: string;
     poster_path: string;
-    media_type: string;
+    media_type?: string;
   }[];
 }
 
