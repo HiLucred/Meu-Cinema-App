@@ -1,6 +1,5 @@
 <h1>Meu Cinema</h1>
-<p>O projeto "Meu Cinema" é uma aplicação desenvolvida com Next.js + React.js (TypeScript), com o intuito de reforçar e praticar os ensinamentos base sobre o framework Next.js.</p>
-</br>
+<p>O projeto "Meu Cinema" é uma aplicação desenvolvida com Next.js + React.js (TypeScript), com o intuito de reforçar e praticar os ensinamentos sobre o framework Next.js.</p>
 
 ## As tecnologias presentes neste aplicativo são as seguintes: 
 <ul>
@@ -44,3 +43,5 @@ Abra [http://localhost:3000](http://localhost:3000) com o seu navegador para vis
 Preview:
 
 ![image](https://user-images.githubusercontent.com/90939916/206593575-992dcdf9-38f5-4450-937d-8e114427df40.png)
+![image](https://user-images.githubusercontent.com/90939916/206940838-2f273ba3-0120-47bf-b42f-f11d01fa5426.png)
+
