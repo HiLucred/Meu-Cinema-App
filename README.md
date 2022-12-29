@@ -1,6 +1,8 @@
 <h1>Meu Cinema</h1>
 <p>O projeto "Meu Cinema" é uma aplicação desenvolvida com Next.js + React.js (TypeScript), com o intuito de reforçar e praticar os ensinamentos sobre o framework Next.js.</p>
 
+Deploy: https://meu-cinema-app-hilucred.vercel.app/
+
 ## As tecnologias presentes neste aplicativo são as seguintes: 
 <ul>
   <li>Next.js</li>
