@@ -78,7 +78,7 @@ export default function MovieDetails({ titleDetails }: MovieDetailsProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: true,
+    fallback: "blocking",
   };
 };
 

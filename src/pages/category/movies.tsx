@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Titles from "../../components/SliderTitles";
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import { BaseTitle } from "../../components/Typography";
 import { loadNowPlaying } from "../../lib/loadNowPlaying";
 import { loadTopRated } from "../../lib/loadTopRated";
@@ -46,7 +46,7 @@ export default function MoviesPage({ topRated, nowPlaying }: MoviesProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const topRated = await loadTopRated("movie");
   const nowPlaying = await loadNowPlaying("movie");
 

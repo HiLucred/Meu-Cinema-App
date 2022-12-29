@@ -70,7 +70,7 @@ export default function TvDetails({ titleDetails }: TvDetailsProps) {
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: true,
+    fallback: "blocking",
   };
 };
 

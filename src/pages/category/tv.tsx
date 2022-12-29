@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import Titles from "../../components/SliderTitles";
 import { BaseTitle } from "../../components/Typography";
@@ -46,7 +46,7 @@ export default function TvPage({ topRated, nowPlaying }: MoviesProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const topRated = await loadTopRated("tv");
   const nowPlaying = await loadNowPlaying("tv");
 
