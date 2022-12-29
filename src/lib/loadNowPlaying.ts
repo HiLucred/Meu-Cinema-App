@@ -1,6 +1,6 @@
 export async function loadNowPlaying(mediaType: "movie" | "tv") {
   const response = await fetch(
-    `http://localhost:3000/api/nowPlaying/${mediaType}`
+    `https://meucinema.vercel.app/api/nowPlaying/${mediaType}`
   );
   const data = await response.json();
 
