@@ -4,6 +4,8 @@ import Perfils from "../components/SliderPerfils";
 import { GetServerSideProps } from "next";
 import { HomeContainer } from "../styles/pages";
 import { BaseTitle } from "../components/Typography";
+import loadTrending from "../lib/loadTrending";
+import loadPersonPopular from "../lib/loadPersonPopular";
 
 interface Trending {
   id: number;
@@ -58,21 +60,13 @@ export default function Home({
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const trendingTitles = await fetch(
-    `http://localhost:3000/api/trending?q=all`
-  ).then((res) => res.json());
+  const trendingTitles = await loadTrending("all");
 
-  const personPopular = await fetch(
-    "http://localhost:3000/api/personPopular"
-  ).then((res) => res.json());
+  const personPopular = await loadPersonPopular();
 
-  const trendingTv = await fetch(
-    `http://localhost:3000/api/trending?q=tv`
-  ).then((res) => res.json());
+  const trendingTv = await loadTrending("tv");
 
-  const trendingMovies = await fetch(
-    `http://localhost:3000/api/trending?q=movie`
-  ).then((res) => res.json());
+  const trendingMovies = await loadTrending("movie");
 
   return {
     props: {

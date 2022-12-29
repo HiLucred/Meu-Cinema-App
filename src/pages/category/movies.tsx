@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Titles from "../../components/SliderTitles";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { BaseTitle } from "../../components/Typography";
 import { loadNowPlaying } from "../../lib/loadNowPlaying";
 import { loadTopRated } from "../../lib/loadTopRated";
@@ -55,7 +55,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
       topRated: topRated.list,
       nowPlaying: nowPlaying.list,
     },
-
-    revalidate: 60 * 60 * 1, // 1 hour
   };
 };

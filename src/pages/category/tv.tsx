@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Titles from "../../components/SliderTitles";
 import { BaseTitle } from "../../components/Typography";
@@ -55,7 +55,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
       topRated: topRated.list,
       nowPlaying: nowPlaying.list,
     },
-
-    revalidate: 60 * 60 * 1, // 1 hour
   };
 };
