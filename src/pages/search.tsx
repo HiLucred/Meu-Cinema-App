@@ -3,6 +3,7 @@ import TitlesFound from "../components/TitlesFound";
 import { useState } from "react";
 import { BaseTitle } from "../components/Typography";
 import { SearchContainer, SearchInput } from "../styles/pages/search";
+import { vercelUrl } from "../lib/tmdb";
 
 interface DataTitles {
   id: number;
@@ -18,9 +19,7 @@ export default function Search() {
   const isDisabled = !!!searchResult;
 
   async function handleSearchTitles() {
-    const response = await fetch(
-      `http://localhost:3000/api/search?q=${searchResult}`
-    );
+    const response = await fetch(`${vercelUrl}/api/search?q=${searchResult}`);
 
     const data = await response.json();
 
